@@ -44,6 +44,7 @@ go-bookstore-demo/
 │   ├── router.go          # Chi router setup
 │   ├── handlers/          # HTTP route logic
 │   ├── models/            # Book, PurchaseRequest types
+│   ├── repository/        # Book repository logic
 │   ├── rpc/               # gRPC client logic
 │   │   └── client.go
 ├── payment/
