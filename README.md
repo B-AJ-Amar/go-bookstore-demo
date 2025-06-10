@@ -13,11 +13,7 @@ A simple microservices-based bookstore application built with **Go**, for learni
 ## 🧱 Architecture
 
 ```bash
--[ Client ]
-↓ REST (Chi)
--[ Bookstore Service ]
-↓ gRPC
--[ Payment Service ]
+[ Client ] <- REST (Chi) -> [ Bookstore Service ] <- gRPC -> [ Payment Service ]
 ```
 
 ---
