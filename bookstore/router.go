@@ -5,6 +5,8 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+
+	routers "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/routers"
 )
 
 func Router() http.Handler {
@@ -17,5 +19,15 @@ func Router() http.Handler {
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Welcome to the Bookstore!"))
 	})
+
+	r.Route("/api", func(r chi.Router) {
+
+		r.Use(middleware.AllowContentType("application/json")) // Allow only JSON content type
+
+		routers.BookRoutes(r)
+		routers.AuthorRoutes(r)
+		
+	})
+
 	return r
 }
