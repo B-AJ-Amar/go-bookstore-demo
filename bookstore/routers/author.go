@@ -9,10 +9,10 @@ func AuthorRoutes(r chi.Router) {
 	r.Route("/authors", func(r chi.Router) {
 		r.Get("/", handlers.GetAuthors)
 		r.Post("/", handlers.CreateAuthor)
-		// r.Route("/{id:[0-9]+}", func(r chi.Router) {
-		// 	r.Get("/", handlers.GetAuthor)
-		// 	r.Put("/", handlers.UpdateAuthor)
-		// 	r.Delete("/", handlers.DeleteAuthor)
-		// })
+		r.Route("/{id:[0-9]+}", func(r chi.Router) {
+			r.Get("/", handlers.GetAuthor)
+			r.Put("/", handlers.UpdateAuthor)
+			r.Delete("/", handlers.DeleteAuthor)
+		})
 	})
 }
