@@ -1,18 +1,18 @@
 package routers
 
 import (
-	handler "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/handler"
+	handlers "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/handlers"
 	"github.com/go-chi/chi/v5"
 )
 
 func BookRoutes(r chi.Router) {
 	r.Route("/books", func(r chi.Router) {
-		r.Get("/", handler.GetBooks)
-		r.Post("/", handler.CreateBook)
-		r.Route("/{id:[0-9]+}", func(r chi.Router) {
-			r.Get("/", handler.GetBook)
-			r.Put("/", handler.UpdateBook)
-			r.Delete("/", handler.DeleteBook)
-		})
+		r.Get("/", handlers.GetBooks)
+		r.Post("/", handlers.CreateBook)
+		// r.Route("/{id:[0-9]+}", func(r chi.Router) {
+		// 	r.Get("/", handlers.GetBook)
+		// 	r.Put("/", handlers.UpdateBook)
+		// 	r.Delete("/", handlers.DeleteBook)
+		// })
 	})
 }

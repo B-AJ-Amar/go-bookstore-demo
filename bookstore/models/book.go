@@ -1,21 +1,20 @@
 package models
 
 import (
-	"github.com/go-playground/validator/v10"
+	utils "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/utils"
 )
 
 type Book struct {
 	Model
-	AuthorID      int
-	Author      Author   `gorm:"foreignKey:AuthorID";constraint:OnDelete:SET NULL;"`
-	Name        string   `gorm:"column:name" validate:"required,max=100,matches=^[a-zA-Z0-9_ ]*$"` 
-	Description *string  `gorm:"column:description" validate:"max=500"` 
-	Price       float64  `gorm:"column:price" validate:"required,gt=0"` 
+	AuthorID      int    `json:"author_id"`
+	Author      Author   `json:"author" gorm:"foreignKey:AuthorID";constraint:OnDelete:SET NULL;"`
+	Name        string   `json:"name" gorm:"column:name" validate:"required,alpha_space"` 
+	Description *string  `json:"description" gorm:"column:description" validate:"max=500"` 
+	Price       float64  `json:"price" gorm:"column:price" validate:"required,gt=0"` 
 
 }
 
 
 func (b *Book) ValidateBook() error {
-	validate := validator.New()
-	return validate.Struct(b)
+	return utils.Validate.Struct(b)
 }
