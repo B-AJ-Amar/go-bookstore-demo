@@ -9,11 +9,11 @@ import (
 
 	config "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/config"
 	"github.com/B-AJ-Amar/go-bookstore-demo/bookstore/models"
-	repository "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/repository"
+	repositories "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/repositories"
 )
 
 func GetAuthors( w http.ResponseWriter, r *http.Request )  {
-	authorRepo := repository.NewAuthorRepository(config.GetDB())
+	authorRepo := repositories.NewAuthorRepository(config.GetDB())
 	authors, err := authorRepo.GetAll()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -24,7 +24,7 @@ func GetAuthors( w http.ResponseWriter, r *http.Request )  {
 
 
 func CreateAuthor( w http.ResponseWriter, r *http.Request )  {
-	authorRepo := repository.NewAuthorRepository(config.GetDB())
+	authorRepo := repositories.NewAuthorRepository(config.GetDB())
 	var author models.Author
 	if err := json.NewDecoder(r.Body).Decode(&author); err != nil {
 		http.Error(w, "Invalid request payload", http.StatusBadRequest)
@@ -40,7 +40,7 @@ func CreateAuthor( w http.ResponseWriter, r *http.Request )  {
 
 
 func GetAuthor( w http.ResponseWriter, r *http.Request )  {
-	authorRepo := repository.NewAuthorRepository(config.GetDB())
+	authorRepo := repositories.NewAuthorRepository(config.GetDB())
 	id  , err := strconv.Atoi(chi.URLParam(r, "id"))
 	if err != nil {
 
@@ -56,7 +56,7 @@ func GetAuthor( w http.ResponseWriter, r *http.Request )  {
 }
 
 func UpdateAuthor( w http.ResponseWriter, r *http.Request )  {
-	authorRepo := repository.NewAuthorRepository(config.GetDB())
+	authorRepo := repositories.NewAuthorRepository(config.GetDB())
 	id  , err := strconv.Atoi(chi.URLParam(r, "id"))
 	if err != nil {
 
@@ -77,7 +77,7 @@ func UpdateAuthor( w http.ResponseWriter, r *http.Request )  {
 }
 
 func DeleteAuthor( w http.ResponseWriter, r *http.Request ) {
-	authorRepo := repository.NewAuthorRepository(config.GetDB())
+	authorRepo := repositories.NewAuthorRepository(config.GetDB())
 	id  , err := strconv.Atoi(chi.URLParam(r, "id"))
 	if err != nil {
 

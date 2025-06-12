@@ -6,11 +6,11 @@ import (
 
 	config "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/config"
 	"github.com/B-AJ-Amar/go-bookstore-demo/bookstore/models"
-	repository "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/repository"
+	repositories "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/repositories"
 )
 
 func GetBooks( w http.ResponseWriter, r *http.Request )  {
-	bookRepo := repository.NewBookRepository(config.GetDB())
+	bookRepo := repositories.NewBookRepository(config.GetDB())
 	books, err := bookRepo.GetAll()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -21,7 +21,7 @@ func GetBooks( w http.ResponseWriter, r *http.Request )  {
 
 
 func CreateBook( w http.ResponseWriter, r *http.Request )  {
-	bookRepo := repository.NewBookRepository(config.GetDB())
+	bookRepo := repositories.NewBookRepository(config.GetDB())
 	var book models.Book
 	if err := json.NewDecoder(r.Body).Decode(&book); err != nil {
 		http.Error(w, "Invalid request payload", http.StatusBadRequest)
