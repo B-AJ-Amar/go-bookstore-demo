@@ -13,6 +13,7 @@ type BookRepository interface {
 	GetAll() ([]models.Book, error)
 	Update(book *models.Book) error
 	Delete(id uint) error
+	UpdateBookQuantity(bookID uint, quantity int) error
 }
 
 type bookRepository struct {
@@ -58,4 +59,9 @@ func (r *bookRepository) Update(book *models.Book) error {
 
 func (r *bookRepository) Delete(id uint) error {
 	return r.db.Delete(&models.Book{}, id).Error
+}
+
+
+func (r *bookRepository) UpdateBookQuantity(bookID uint, quantity int) error {
+	return r.db.Model(&models.Book{}).Where("id = ?", bookID).Update("quantity", quantity).Error
 }

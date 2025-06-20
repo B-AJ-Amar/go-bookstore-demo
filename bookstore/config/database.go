@@ -36,6 +36,7 @@ func MigrateDB() {
 	err := db.AutoMigrate(
 		&models.Author{},
 		&models.Book{},
+		&models.Payment{},
 	)
 
 	if err != nil {
