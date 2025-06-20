@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package payment;
+
+option go_package = "/paymentpb";
+
+// The Payment service definition
+service PaymentService {
+  rpc BuyBook (BuyBookRequest) returns (BuyBookResponse);
+}
+
+// Request message
+message BuyBookRequest {
+  uint64 book_id = 1;
+  uint32 quantity = 2;
+}
+
+// Response message
+message BuyBookResponse {
+  bool success = 1;
+  string message = 2;
+}
