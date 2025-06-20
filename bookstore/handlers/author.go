@@ -8,7 +8,7 @@ import (
 	"github.com/go-chi/chi/v5"
 
 	config "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/config"
-	"github.com/B-AJ-Amar/go-bookstore-demo/bookstore/models"
+	models "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/models"
 	repositories "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/repositories"
 )
 

@@ -6,12 +6,11 @@ import (
 
 type Book struct {
 	Model
-	AuthorID      int    `json:"author_id"`
-	Author      Author   `json:"author" gorm:"foreignKey:AuthorID";constraint:OnDelete:SET NULL;"`
-	Name        string   `json:"name" gorm:"column:name" validate:"required,alpha_space"` 
-	Description *string  `json:"description" gorm:"column:description" validate:"max=500"` 
-	Price       float64  `json:"price" gorm:"column:price" validate:"required,gt=0"` 
-
+	AuthorID    int      `json:"author_id" validate:"required"`
+	Author      Author   `json:"-" gorm:"foreignKey:AuthorID;constraint:OnDelete:SET NULL;" validate:"-"`
+	Name        string   `json:"name" gorm:"column:name" validate:"required,alpha_space"`
+	Description *string  `json:"description" gorm:"column:description" validate:"max=500"`
+	Price       float64  `json:"price" gorm:"column:price" validate:"required,gt=0"`
 }
 
 
