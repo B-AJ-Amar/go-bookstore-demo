@@ -8,10 +8,15 @@ import (
 
 	routers "github.com/B-AJ-Amar/go-bookstore-demo/bookstore/routers"
 	"github.com/B-AJ-Amar/go-bookstore-demo/bookstore/utils"
+	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
 func Router() http.Handler {
 	r := chi.NewRouter()
+
+	r.Use(func(h http.Handler) http.Handler {
+		return otelhttp.NewHandler(h, "request")
+	})
 
 	r.Use(middleware.Logger) // Log the HTTP requests
 	r.Use(middleware.Recoverer) // Recover from panics
